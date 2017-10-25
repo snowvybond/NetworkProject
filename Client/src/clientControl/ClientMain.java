@@ -1,19 +1,17 @@
-package sample;
+package clientControl;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.DatabaseHandle;
 
-public class ServerMain extends Application {
+public class ClientMain extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        DatabaseHandle.connect();
-        Parent root = FXMLLoader.load(getClass().getResource("serverUI.fxml"));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("clientUI.fxml"));
+        primaryStage.setTitle("Picture");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
@@ -23,3 +21,4 @@ public class ServerMain extends Application {
         launch(args);
     }
 }
+

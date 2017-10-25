@@ -9,10 +9,10 @@ public class Server {
     private static ServerSocket serverSocket;
     private static Socket clientSocket = null;
 
-    public void setUp() {
+    public void start() {
 
         try {
-            serverSocket = new ServerSocket(4444);
+            serverSocket = new ServerSocket(port);
             System.out.println("Server started.");
         } catch (Exception e) {
             System.err.println("Port already in use.");
