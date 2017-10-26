@@ -12,6 +12,7 @@ public class ServerMain extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("serverUI.fxml"));
         primaryStage.setTitle("Picture Server");
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 561, 325));
         primaryStage.show();
     }

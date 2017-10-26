@@ -12,7 +12,8 @@ public class ClientMain extends Application{
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("clientUI.fxml"));
         primaryStage.setTitle("Picture");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(root, 792, 476));
         primaryStage.show();
     }
 

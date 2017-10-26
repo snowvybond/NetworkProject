@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serverControl.ServerController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serverControl.ServerController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -23,7 +23,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
               </content>
             </ScrollPane>
-            <Button fx:id="start" layoutX="255.0" layoutY="280.0" mnemonicParsing="false" text="Start" />
+            <Button fx:id="start" layoutX="255.0" layoutY="280.0" mnemonicParsing="false" onAction="#startBtn" text="Start" />
          </children>
       </Pane>
    </children>
