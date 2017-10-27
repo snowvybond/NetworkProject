@@ -5,33 +5,32 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientControl.ClientController">
    <children>
-      <ImageView fx:id="imgView" fitHeight="299.0" fitWidth="319.0" layoutX="227.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="707.0" layoutY="355.0" mnemonicParsing="false" text="Browse" />
-      <Button layoutX="616.0" layoutY="355.0" mnemonicParsing="false" text="Upload" />
-      <ListView fx:id="fileList" layoutX="13.0" layoutY="39.0" prefHeight="309.0" prefWidth="200.0" />
-      <Label layoutX="17.0" layoutY="17.0" text="Picture on Server" />
-      <Button fx:id="viewBtn" layoutX="47.0" layoutY="355.0" mnemonicParsing="false" text="View" />
-      <Button layoutX="113.0" layoutY="355.0" mnemonicParsing="false" text="Download" />
-      <Label layoutX="312.0" layoutY="360.0" text="File to upload" />
+      <Button fx:id="browseBtn" layoutX="707.0" layoutY="355.0" mnemonicParsing="false" onAction="#browseBtnAction" text="Browse" />
+      <Button fx:id="uploadBtn" layoutX="634.0" layoutY="355.0" mnemonicParsing="false" onAction="#uploadBtnAction" text="Upload" />
+      <ListView fx:id="filenameView" layoutX="13.0" layoutY="39.0" prefHeight="309.0" prefWidth="200.0" />
+      <Label layoutX="17.0" layoutY="17.0" text="Text on Server" />
+      <Button fx:id="viewBtn" layoutX="33.0" layoutY="355.0" mnemonicParsing="false" text="View" />
+      <Button layoutX="99.0" layoutY="355.0" mnemonicParsing="false" text="Download" />
+      <Label layoutX="209.0" layoutY="360.0" text="File to upload" />
       <TextArea fx:id="chatText" editable="false" layoutX="566.0" layoutY="38.0" prefHeight="257.0" prefWidth="200.0" />
       <TextField fx:id="chatFeild" layoutX="566.0" layoutY="308.0" prefHeight="31.0" prefWidth="134.0" />
       <Button layoutX="715.0" layoutY="308.0" mnemonicParsing="false" text="Chat" />
       <Label layoutX="566.0" layoutY="17.0" text="Chat room" />
-      <Label layoutX="227.0" layoutY="17.0" text="Image viewer" />
+      <Label layoutX="227.0" layoutY="17.0" text="Text viewer" />
       <Label layoutX="17.0" layoutY="402.0" text="Server IP address" />
       <Label layoutX="312.0" layoutY="402.0" text="Server Port" />
-      <TextField fx:id="ip" layoutX="134.0" layoutY="397.0" prefHeight="31.0" prefWidth="172.0" text="127.0.0.1" />
-      <TextField fx:id="port" layoutX="396.0" layoutY="397.0" prefHeight="31.0" prefWidth="68.0" text="5555" />
+      <TextField fx:id="serverIp" layoutX="134.0" layoutY="397.0" prefHeight="31.0" prefWidth="172.0" text="127.0.0.1" />
+      <TextField fx:id="serverPort" layoutX="396.0" layoutY="397.0" prefHeight="31.0" prefWidth="68.0" text="5555" />
       <Button fx:id="connectBtn" layoutX="705.0" layoutY="397.0" mnemonicParsing="false" onAction="#connectBtnAction" text="Connect" />
       <Label layoutX="299.0" layoutY="441.0" text="Connected Status" />
       <Label layoutX="433.0" layoutY="441.0" text="Disconnect" textFill="RED" />
-      <TextField editable="false" layoutX="414.0" layoutY="355.0" />
+      <TextField fx:id="path" editable="false" layoutX="308.0" layoutY="355.0" prefHeight="31.0" prefWidth="319.0" />
       <Label layoutX="472.0" layoutY="402.0" text="Chat name" />
       <TextField fx:id="chatname" layoutX="549.0" layoutY="397.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextArea layoutX="227.0" layoutY="39.0" prefHeight="309.0" prefWidth="329.0" />
    </children>
 </AnchorPane>

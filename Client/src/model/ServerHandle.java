@@ -21,12 +21,9 @@ public class ServerHandle implements Runnable {
                 while ((clientObject = in.readObject()) != null){
                     ArrayList<Object> serverArray = (ArrayList<Object>) clientObject;
                     String staus = (String)serverArray.get(0);
-                    ArrayList<String> filename = (ArrayList<String>) serverArray.get(1);
                     if (staus.equals("201")){
-                        for (int i=0;i<filename.size();i++){
-                            System.out.println(filename.get(i));
-                        }
-
+                        ArrayList<String> filename = (ArrayList<String>) serverArray.get(1);
+                        controller.updateFilenameView(filename);
                     }
 
                 }
@@ -36,5 +33,6 @@ public class ServerHandle implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }

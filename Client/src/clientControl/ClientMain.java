@@ -1,6 +1,7 @@
 package clientControl;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +16,10 @@ public class ClientMain extends Application{
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 792, 476));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
 

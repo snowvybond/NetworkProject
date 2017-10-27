@@ -9,36 +9,24 @@ import java.util.ArrayList;
 
 public class Server implements Runnable {
 
-    private final int port = 5555;
+    private int port ;
     private ServerSocket serverSocket;
-    ArrayList<PrintWriter> writers;
     private ArrayList<ObjectOutputStream> outputs;
     private ServerController controller;
 
-    public Server(ArrayList<ObjectOutputStream> outputs, ServerController controller){
+
+    public Server(ArrayList<ObjectOutputStream> outputs, ServerController controller, int port){
         this.outputs = outputs;
         this.controller = controller;
+        this.port = port;
     }
 
-//    public void start() {
-//
-//
-//        while (true) {
-//            try {
-//                clientSocket = serverSocket.accept();
-//                System.out.println("Accepted connection : " + clientSocket);
-//                Thread t = new Thread(new ClientHandle(clientSocket));
-//                t.start();
-//            } catch (Exception e) {
-//                System.err.println("Error in connection attempt.");
-//            }
-//        }
-//    }
 
     @Override
     public void run() {
         try {
             serverSocket = new ServerSocket(port);
+            controller.displayLog("Server started");
             System.out.println("Server started.");
             while (true) {
                 Socket clientSocket = serverSocket.accept();
@@ -49,10 +37,12 @@ public class Server implements Runnable {
                 outputs.add(out);
                 Thread t = new Thread(new ClientHandle(in, controller));
                 t.start();
+
             }
         } catch (Exception e) {
             System.exit(1);
         }
 
     }
+
 }
