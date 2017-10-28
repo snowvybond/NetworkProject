@@ -2,6 +2,7 @@ package serverControl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -9,10 +10,11 @@ import model.Server;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ServerController {
-    private ArrayList<ObjectOutputStream> outputs;
+    private HashMap<Integer,ObjectOutputStream> outputs;
+
     private Thread s;
     @FXML
     protected TextArea serverLog;
@@ -22,7 +24,7 @@ public class ServerController {
     protected Button start;
 
     public  ServerController(){
-        outputs = new ArrayList<>();
+        outputs = new HashMap<Integer,ObjectOutputStream>();
     }
 
     @FXML
@@ -33,8 +35,9 @@ public class ServerController {
         start.setDisable(true);
         serverPort.setDisable(true);
     }
-    public void sendObjectToClient(Object obj, String statusPhrase, String clientnumber, int i){
-        ObjectOutputStream out = outputs.get(i);
+    public void sendObjectToClient(Object obj, String statusPhrase, String clientnumber, int clientID){
+        ObjectOutputStream out = outputs.get(clientID);
+        this.displayLog(statusPhrase +" "+clientnumber);
         System.out.println(statusPhrase +" "+clientnumber );
         try {
             out.writeObject(obj);
@@ -44,17 +47,31 @@ public class ServerController {
             e.printStackTrace();
         }
 
+    }public void sendObjectToAllClient(Object obj, String statusPhrase){
+        for (int clientID : outputs.keySet()){
+            this.sendObjectToClient(obj,statusPhrase,"to clientID : "+clientID,clientID);
+        }
+
     }
 
-
-    public ArrayList<ObjectOutputStream> getOutputs() {
+    public HashMap<Integer, ObjectOutputStream> getOutputs() {
         return outputs;
     }
-    public void removeOutputs(){
-        outputs.remove(outputs.size()-1);
+
+    public void removeOutputs(int clientID){
+        outputs.remove(clientID);
     }
     public void displayLog(String log){
+        log += "\n";
         this.serverLog.appendText(log);
+    }
+    public void displayPortInUse(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Port already in use");
+        alert.setHeaderText("Port already in use");
+        alert.setContentText("Program will be terminate");
+        alert.showAndWait();
+        System.exit(1);
     }
 
 }

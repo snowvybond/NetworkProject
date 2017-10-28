@@ -12,7 +12,7 @@ public class ClientMain extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("clientUI.fxml"));
-        primaryStage.setTitle("Picture");
+        primaryStage.setTitle("Text client");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 792, 476));
         primaryStage.show();

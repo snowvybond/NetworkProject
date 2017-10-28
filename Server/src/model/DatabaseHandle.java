@@ -37,7 +37,7 @@ public class DatabaseHandle {
             try {
                 if (conn != null) {
                     conn.close();
-                    System.out.println("close");
+                    System.out.println("closeDB");
                     return filename;
                 }
             }
@@ -48,7 +48,7 @@ public class DatabaseHandle {
         return filename;
     }
 
-    public static String browseData() {
+    public static String browseData(String fname) {
         Connection conn = null;
         String data = "";
         try {
@@ -61,13 +61,11 @@ public class DatabaseHandle {
                 DatabaseMetaData dm = (DatabaseMetaData)conn.getMetaData();
                 System.out.println("Driver name: "+ dm.getDriverName());
                 System.out.println("Product name: "+dm.getDatabaseProductName());
-                System.out.println("--------DATA----------------");
-                String query = "Select name from filename";
+                String query = "Select data from filename where name = \""+fname+"\"";
                 Statement statement = conn.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                while (resultSet.next()) {
-                    data = resultSet.getString(1);
-                }
+                data = resultSet.getString(1);
+                System.out.println("Finish query");
             }
         }
         catch (SQLException e) {
@@ -77,7 +75,7 @@ public class DatabaseHandle {
             try {
                 if (conn != null) {
                     conn.close();
-                    System.out.println("close");
+                    System.out.println("closeDB");
                     return data;
                 }
             }
@@ -91,7 +89,6 @@ public class DatabaseHandle {
 
     public static void updateData(String name, String data) {
         Connection conn = null;
-        Statement stmt = null;
         try {
             // db parameters
             String url = "jdbc:sqlite:filename.db";
@@ -108,6 +105,7 @@ public class DatabaseHandle {
                 pstmt.setString(1,name);
                 pstmt.setString(2,data);
                 pstmt.executeUpdate();
+                System.out.println("Insert finish");
             }
         }
         catch (SQLException e) {
@@ -118,7 +116,43 @@ public class DatabaseHandle {
             try {
                 if (conn != null) {
                     conn.close();
-                    System.out.println("close");
+                    System.out.println("closeDB");
+                }
+            }
+            catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+
+    public static void deleteData(String fname) {
+        Connection conn = null;
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:filename.db";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            System.out.println("Connection to SQLite has been established.");
+            if (conn != null){
+                DatabaseMetaData dm = (DatabaseMetaData)conn.getMetaData();
+                System.out.println("Driver name: "+ dm.getDriverName());
+                System.out.println("Product name: "+dm.getDatabaseProductName());
+                String query = "delete from filename where name = \""+fname+"\"";
+                Statement statement = conn.createStatement();
+                statement.execute(query);
+                System.out.println("Delete finish");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                    System.out.println("closeDB");
                 }
             }
             catch (SQLException ex) {
